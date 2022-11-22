@@ -24,19 +24,20 @@ body {
     width: 800px;
     margin: auto;
     
+    
 }
 .first-options {
 
-    width: 33%;
+    width: 38%;
     float: left;
 }
 .second-options {
 
-    width: 33%;
+    width: 38%;
     float: right;
 }
 .button-timer {
-    width: 33%;
+    width: 25%;
     margin: 0 auto;
 
 }
@@ -48,6 +49,7 @@ body {
     float: left;
     clear: both;
     height: 200px;
+    overflow: hidden;
 }
 
 
@@ -56,6 +58,7 @@ body {
     float: right;
     padding: 1%;
     height: 200px;
+    overflow: hidden;
 }
 
 #timer{
@@ -74,4 +77,36 @@ body {
 .help-area{
     float: right;
     clear:both
+}
+
+
+#options1 {
+
+    text-align: left;
+    margin:10px;
+    width: 95%;
+    padding: 10px;
+
+}
+#options2 {
+ 
+    text-align: left;
+    margin: 10px;
+    width: 95%;
+    padding: 10px;
+}
+#options3 {
+
+    text-align: left;
+    margin: 10px;
+    width: 95%;
+    padding: 10px;
+
+}
+#options4 {
+    text-align: left;
+    margin: 10px;
+    width: 95%;
+    padding: 10px;
+
 }
