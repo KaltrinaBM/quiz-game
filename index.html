@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+    <!--font awesome script -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Quiz Game</title>
+    </head>
+
+<body>
+    <h1 class="heading ">
+        <img class="logo" src="assets/images/logo.png" alt="logo">General Knowledge Quiz</h1>
+
+    <div class="question-area">
+        <h2 id="question"></h2>
+    </div>
+    <div class="first-options p-4">
+        <button class="btn btn-block btn-outline-success text-left option" id="options1">
+        </button>
+           
+    </div>
+    <div class="second-options p-4" ></div>
+
+    <div class="button-timer">
+        <h4 class="timer">Total Time: <br> (00: <span id="time">00</span>)</h4>
+        <button data-type="submit" class="submit-btn">Submit Answer</button>
+    </div>
+    <div class ="results">
+        <h3>Correct Answers: </h3>
+        <h3>Incorrect Answers: </h3>
+    </div>
+    <div class="help-area"></div>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
