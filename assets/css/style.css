@@ -1,0 +1,77 @@
+/* --------- Global style */
+
+body {
+    background-color: white;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #445361;
+    text-align: center;
+}
+
+/* --------- Heading */
+
+.heading {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.logo {
+    height: 60px;
+    padding-right: 5px;
+}
+
+#answers-area{
+    height: 300px;
+    width: 800px;
+    margin: auto;
+    
+}
+.first-options {
+
+    width: 33%;
+    float: left;
+}
+.second-options {
+
+    width: 33%;
+    float: right;
+}
+.button-timer {
+    width: 33%;
+    margin: 0 auto;
+
+}
+
+.first-options {
+    
+    background-color: #E6ECF0;
+    padding: 1%;
+    float: left;
+    clear: both;
+    height: 200px;
+}
+
+
+.second-options {
+    background-color: #E6ECF0;
+    float: right;
+    padding: 1%;
+    height: 200px;
+}
+
+#timer{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 1px;
+    border-radius: 50%;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(100%);
+    
+}
+.help-area{
+    float: right;
+    clear:both
+}
