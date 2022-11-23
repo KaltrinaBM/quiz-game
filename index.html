@@ -19,41 +19,35 @@
     <div>
         <h1 class="heading">
             <img class="logo" src="assets/images/logo.png" alt="logo">General Knowledge Quiz</h1>
-        <div class="help-area">
-            <div>
-                <h2>Popup</h2>
-                <div class="popup" onclick="myFunction()">Click me to toggle the popup!
-                    <span class="popuptext" id="myPopup">A Simple Popup!</span>
-                </div>
-            </div>
-            <button data-type="reset" class="reset">Reset</button>
-        </div>
+
     </div>
 
     <div class="question-area">
+        <div class="popup" onclick="myFunction()">Click 
+            <button><i class="fa-solid fa-circle-info"></i></button>
+            <span class="popuptext" id="myPopup">Popup!</span>
+        </div>
         <h2 id="question">question</h2>
+        <button data-type="reset" class="reset">Reset</button>
 
     </div>
     <div id="answers-area">
         <div class="first-options">
             <div>
-                <button class="btn btn-block btn-outline-success text-left option" id="options1">question
-                    1111111111111111111111111111111 111111111111111111111111111111 111111111111111111 1111111111111
-                    1111111111</button>
+                <button class="options btn btn-block btn-outline-success text-left option" id="options1">answer 1</button>
             </div>
             <div>
-                <button class="btn btn-block btn-outline-success text-left option" id="options2">question 2 22222222222222222 2222222222222222222222222
-                    222222222222222 222222222222222222</button>
+                <button class="options btn btn-block btn-outline-success text-left option" id="options2">answer2</button>
             </div>
         </div>
 
 
         <div class="second-options">
             <div>
-                <button class="btn btn-block btn-outline-success text-left option" id="options3">question 3</button>
+                <button class="options btn btn-block btn-outline-success text-left option" id="options3">answer 3</button>
             </div>
             <div>
-                <button class="btn btn-block btn-outline-success text-left option" id="options4">question 4</button>
+                <button class="options btn btn-block btn-outline-success text-left option" id="options4">answer 4</button>
             </div>
         </div>
 
@@ -61,16 +55,21 @@
             <h4 class="timer">Total Time: <br> (00: <span id="time">00</span>)</h4>
 
         </div>
+        <button data-type="submit" class="btn btn-gray" id="submit-btn">Submit Answer</button>
     </div>
 
     </div>
-    <div>
-        <button data-type="submit" class="btn btn-gray">Submit Answer</button>
-    </div>
+    <div class="submit-area">
+    
+        <img id="background" src="assets/images/background.png" alt="background">
+    
     <div class="results">
-        <h3>Correct Answers: </h3>
-        <h3>Incorrect Answers: </h3>
+        
+        <p class="scores">Correct Answers <span id="correct">0</span></p>
+        <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
     </div>
+</div>
+
 
 
     <script src="assets/js/script.js"></script>
