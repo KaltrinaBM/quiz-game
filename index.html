@@ -28,30 +28,29 @@
 
     <div class="question-area">
         <div class="popup" onclick="myFunction()">Click 
-            <button></button>
             <span class="popuptext" id="myPopup">Popup!</span>
         </div>
-        <h2 id="question"></h2>
+        <span id="question"></span>
         <button data-type="reset" class="reset">Reset</button>
 
     </div>
     <div id="answers-area">
         <div class="first-options">
             <div>
-                <button class="options btn btn-block btn-outline-success text-left option" id="options1"></button>
+                <button data-type="options1" class="options btn btn-block btn-outline-success text-left option" id="options1"></button>
             </div>
             <div>
-                <button class="options btn btn-block btn-outline-success text-left option" id="options2"></button>
+                <button data-type="options2" class="options btn btn-block btn-outline-success text-left option" id="options2"></button>
             </div>
         </div>
 
 
         <div class="second-options">
             <div>
-                <button class="options btn btn-block btn-outline-success text-left option" id="options3"></button>
+                <button data-type="options3" class="options btn btn-block btn-outline-success text-left option" id="options3"></button>
             </div>
             <div>
-                <button class="options btn btn-block btn-outline-success text-left option" id="options4"></button>
+                <button data-type="options4" class="options btn btn-block btn-outline-success text-left option" id="options4"></button>
             </div>
         </div>
 
@@ -59,7 +58,7 @@
             <h4 class="timer">Total Time: <br> (00: <span id="time">00</span>)</h4>
 
         </div>
-        <button data-type="submit" class="btn btn-gray" id="submit-btn">Submit Answer</button>
+        <button data-type="submit" class="btn" id="submit">Submit Answer</button>
     </div>
 
     </div>
@@ -69,8 +68,10 @@
     
     <div class="results">
         
-        <p class="scores">Correct Answers <span id="correct">0</span></p>
-        <p class="scores">Incorrect Answers <span id="incorrect">0</span></p>
+        <p class="scores">Score<span id="score">0</span></p>
+
+
+
     </div>
 </div>
 
