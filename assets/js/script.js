@@ -60,8 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function checkIfScore() {
         let optionIdSelected = document.querySelector('button[type="submit"], button:not([type])');
-        document.querySelector('button[value="my task"]');
-button.click();
+
 
         let option_correct = quizQuestions[current_question].correctAnswer;
         if (optionIdSelected != null) {
