@@ -7,12 +7,13 @@ let options4 = document.getElementById("options4");
 let time_element = document.getElementById("timer");
 let buttons = document.getElementsByClassName("options");
 let current_question = 0;
-let correctAnswer = '';
+let scoreUpdate = document.getElementById("score");
 let score = 0;
 let time;
 const total_time = 30;
 let sec = total_time;
 let quizQuestions = [];
+let chosenOption = '';
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -22,21 +23,26 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // load the main game
     loadGame();
+    console.log("DomLoaded");
 
 })
 
 function loadGame() {
     // EventListeners for question buttons
     handleOptionsClick();
+    console.log("loadGame");
+
+
 
     // Handling Event listner on button click
-    handleSubmit();
 
-    if (current_question <= 9) {
+
+    if (current_question <= 10) {
         current_question++;
         showQuestion(current_question);
     } else {
         showResult()
+
     }
 }
 
@@ -44,8 +50,8 @@ function handleOptionsClick() {
     let buttons = document.getElementsByClassName("options");
     for (let button of buttons) {
         button.addEventListener("click", function () {
-            let questions = this.getAttribute("data-type");
-            checkIfScore(questions);
+            let optionWasClicked = this.getAttribute("data-type");
+            checkIfScore(this.name);
         });
     }
 }
@@ -66,29 +72,47 @@ function timer() {
     if (sec == 0) {
         sec = total_time;
         clearInterval(time);
-        checkIfScore();
-        current_question++;
         showQuestion();
     }
 }
 
-function checkIfScore() {
-    let optionIdSelected = document.querySelector('button[type="submit"], button:not([type])');
+function checkIfScore(optionIdSelected) {
+
+    console.log(optionIdSelected);
+    console.log("check if score");
 
 
-    let option_correct = quizQuestions[current_question].correctAnswer;
-    if (optionIdSelected != null) {
-        if (optionIdSelected.id == option_correct) {
-            score++;
-        }
+    let correctAnswers = quizQuestions[current_question].correctAnswer;
+
+
+    if (correctAnswers === optionIdSelected) {
+        alert("Hey! You got it right! :D");
+        score++
+        current_question++;
+        showQuestion();
+        
+    } else {
+        alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAnswers}!`);
+        current_question++;
+        showQuestion();
+
     }
 }
+
+function incrementScore() {
+
+    let score = document.getElementById("score").innerText;
+    document.getElementById("score").innerText = ++score;
+
+}
+
 
 /**
  * The function to show question and options on html page.
  */
 
 function showQuestion() {
+    console.log("showQuestion");
     sec = total_time;
     clearInterval(time);
     timer();
@@ -103,50 +127,44 @@ function showQuestion() {
 
     //set questions and options from array
 
-    question.innerHTML = quizQuestions[current_question].question;
-    document.getElementById("options1").innerHTML =
-        quizQuestions[current_question].correctAnswer;
-    document.getElementById("options2").innerHTML =
-        quizQuestions[current_question].incorrectAnswers[0];
-    document.getElementById("options3").innerHTML =
-        quizQuestions[current_question].incorrectAnswers[1];
-    document.getElementById("options4").innerHTML =
-        quizQuestions[current_question].incorrectAnswers[2];
+    correctAnswer = quizQuestions[0].correctAnswer;
 
-    if (current_question === 9) {
+    question.innerHTML = quizQuestions[current_question].question;
+    document.getElementById("options1").innerHTML = quizQuestions[current_question].correctAnswer;
+    document.getElementById("options1").name = quizQuestions[current_question].correctAnswer;
+
+    document.getElementById("options2").innerHTML =quizQuestions[current_question].incorrectAnswers[0];
+    document.getElementById("options2").name =quizQuestions[current_question].incorrectAnswers[0];
+
+    document.getElementById("options3").innerHTML = quizQuestions[current_question].incorrectAnswers[1];
+    document.getElementById("options3").name = quizQuestions[current_question].incorrectAnswers[1];
+        
+    document.getElementById("options4").innerHTML = quizQuestions[current_question].incorrectAnswers[2];
+    document.getElementById("options4").name = quizQuestions[current_question].incorrectAnswers[2];
+
+    if (current_question === 10) {
         document.getElementById("submit-button").innerHTML = "Get Result";
     }
 
-    function shuffled(showQuestion) {
+   /* function shuffled(showQuestion) {
         showQuestion = showQuestion.slice(); // shallow copy
         for (var i = 0; i < showQuestion.length; i++) {
             var j = Math.floor(Math.random() * (showQuestion.length - i)) + i;
             [showQuestion[i], showQuestion[j]] = [showQuestion[j], showQuestion[i]]; // swap
         }
         return shuffled;
-    }
+    }*/
 }
 
 /**
  * Handling Event listner on button click
  */
-function handleSubmit() {
-    submit.addEventListener("click", (e) => {
-        e.preventDefault()
-        checkIfScore();
-        current_question++;
-        if (current_question >= quizQuestions.length) {
-
-            showResult();
-        } else {
-            showQuestion();
-        }
-    });
-}
 
 function showResult() {
+    console.log("showResults");
     clearInterval(time);
-    current_question = 0;
     checkIfScore();
     document.getElementById("score", score);
+
+
 }
