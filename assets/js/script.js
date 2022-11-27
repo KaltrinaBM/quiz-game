@@ -6,14 +6,14 @@ let options3 = document.getElementById("options3");
 let options4 = document.getElementById("options4");
 let time_element = document.getElementById("timer");
 let buttons = document.getElementsByClassName("options");
+
 let current_question = 0;
-let scoreUpdate = document.getElementById("score");
-let score = 0;
 let time;
 const total_time = 30;
 let sec = total_time;
 let quizQuestions = [];
 let chosenOption = '';
+let currentQues = {};
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // load the main game
     loadGame();
     console.log("DomLoaded");
+    
 
 })
 
@@ -31,13 +32,13 @@ function loadGame() {
     // EventListeners for question buttons
     handleOptionsClick();
     console.log("loadGame");
-
-
+    current_question = 0;
+    score = 0;
 
     // Handling Event listner on button click
 
 
-    if (current_question <= 10) {
+    if (current_question <= 20) {
         current_question++;
         showQuestion(current_question);
     } else {
@@ -50,14 +51,16 @@ function handleOptionsClick() {
     let buttons = document.getElementsByClassName("options");
     for (let button of buttons) {
         button.addEventListener("click", function () {
-            let optionWasClicked = this.getAttribute("data-type");
+            /*let optionWasClicked = this.getAttribute("data-type");*/
             checkIfScore(this.name);
         });
+        
     }
+    
 }
 
 async function getData() {
-    const URL = 'https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=10'
+    const URL = 'https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=20'
     const response = await fetch(URL);
     const data = await response.json();
     quizQuestions = data;
@@ -77,6 +80,7 @@ function timer() {
 }
 
 function checkIfScore(optionIdSelected) {
+    
 
     console.log(optionIdSelected);
     console.log("check if score");
@@ -87,9 +91,10 @@ function checkIfScore(optionIdSelected) {
 
     if (correctAnswers === optionIdSelected) {
         alert("Hey! You got it right! :D");
-        score++
+        incrementScore();
         current_question++;
         showQuestion();
+        
         
     } else {
         alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAnswers}!`);
@@ -99,12 +104,14 @@ function checkIfScore(optionIdSelected) {
     }
 }
 
-function incrementScore() {
 
-    let score = document.getElementById("score").innerText;
-    document.getElementById("score").innerText = ++score;
 
-}
+    function incrementScore(){
+       
+        let oldScores = parseInt(document.getElementById("score").innerText);
+        document.getElementById("score").innerText = ++oldScores;
+    }
+
 
 
 /**
@@ -112,7 +119,9 @@ function incrementScore() {
  */
 
 function showQuestion() {
+  
     console.log("showQuestion");
+
     sec = total_time;
     clearInterval(time);
     timer();
@@ -120,14 +129,16 @@ function showQuestion() {
     document.getElementById("question-number").innerText = current_question;
 
     document.querySelectorAll('button[type="submit"], button:not([type])').forEach(option => option.checked = false)
+    
 
     if (current_question >= quizQuestions.length) {
         showResult();
     }
 
+
     //set questions and options from array
 
-    correctAnswer = quizQuestions[0].correctAnswer;
+    
 
     question.innerHTML = quizQuestions[current_question].question;
     document.getElementById("options1").innerHTML = quizQuestions[current_question].correctAnswer;
@@ -142,15 +153,19 @@ function showQuestion() {
     document.getElementById("options4").innerHTML = quizQuestions[current_question].incorrectAnswers[2];
     document.getElementById("options4").name = quizQuestions[current_question].incorrectAnswers[2];
 
-    if (current_question === 10) {
+    if (current_question === 20) {
         document.getElementById("submit-button").innerHTML = "Get Result";
     }
 
-   /* function shuffled(showQuestion) {
-        showQuestion = showQuestion.slice(); // shallow copy
-        for (var i = 0; i < showQuestion.length; i++) {
-            var j = Math.floor(Math.random() * (showQuestion.length - i)) + i;
-            [showQuestion[i], showQuestion[j]] = [showQuestion[j], showQuestion[i]]; // swap
+
+
+    
+
+   /*function shuffled(quizQuestions) {
+    
+        for (var i = 0; i < quizQuestions.length; i++) {
+            var j = Math.floor(Math.random() * (quizQuestions.length - i)) + i;
+            [quizQuestions[i], quizQuestions[j]] = [quizQuestions[j], quizQuestions[i]]; // swap
         }
         return shuffled;
     }*/
@@ -168,3 +183,5 @@ function showResult() {
 
 
 }
+
+    
