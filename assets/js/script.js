@@ -5,8 +5,7 @@ let options2 = document.getElementById("options2");
 let options3 = document.getElementById("options3");
 let options4 = document.getElementById("options4");
 let time_element = document.getElementById("timer");
-let buttons = document.getElementsByClassName("options");
-
+let answeredQuestions =[]; // array of anwered question indexes
 let current_question = 0;
 let time;
 const total_time = 30;
@@ -14,6 +13,7 @@ let sec = total_time;
 let quizQuestions = [];
 let chosenOption = '';
 let currentQues = {};
+
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -29,18 +29,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 })
 
 function loadGame() {
-    // EventListeners for question buttons
+    
     handleOptionsClick();
     console.log("loadGame");
-    current_question = 0;
-    score = 0;
-
-    // Handling Event listner on button click
 
 
-    if (current_question <= 20) {
+    if (current_question < quizQuestions.length) {
         current_question++;
-        showQuestion(current_question);
+        showQuestion(quizQuestions[current_question]);
     } else {
         showResult()
 
@@ -56,7 +52,13 @@ function handleOptionsClick() {
         });
         
     }
+    let reset = document.getElementById("reset");
+        reset.addEventListener("click", function () {
+            window.location.reload();
+           
+        });
     
+        
 }
 
 async function getData() {
@@ -65,6 +67,7 @@ async function getData() {
     const data = await response.json();
     quizQuestions = data;
     console.log(quizQuestions);
+        
 }
 
 
@@ -94,6 +97,7 @@ function checkIfScore(optionIdSelected) {
         incrementScore();
         current_question++;
         showQuestion();
+
         
         
     } else {
@@ -103,6 +107,7 @@ function checkIfScore(optionIdSelected) {
 
     }
 }
+
 
 
 
@@ -119,9 +124,9 @@ function checkIfScore(optionIdSelected) {
  */
 
 function showQuestion() {
-  
-    console.log("showQuestion");
 
+    console.log("showQuestion");
+ 
     sec = total_time;
     clearInterval(time);
     timer();
@@ -131,16 +136,13 @@ function showQuestion() {
     document.querySelectorAll('button[type="submit"], button:not([type])').forEach(option => option.checked = false)
     
 
-    if (current_question >= quizQuestions.length) {
-        showResult();
-    }
-
 
     //set questions and options from array
 
-    
+    document.getElementById("question-number").innerText = current_question;
 
     question.innerHTML = quizQuestions[current_question].question;
+
     document.getElementById("options1").innerHTML = quizQuestions[current_question].correctAnswer;
     document.getElementById("options1").name = quizQuestions[current_question].correctAnswer;
 
@@ -153,23 +155,9 @@ function showQuestion() {
     document.getElementById("options4").innerHTML = quizQuestions[current_question].incorrectAnswers[2];
     document.getElementById("options4").name = quizQuestions[current_question].incorrectAnswers[2];
 
-    if (current_question === 20) {
-        document.getElementById("submit-button").innerHTML = "Get Result";
-    }
-
-
-
     
-
-   /*function shuffled(quizQuestions) {
-    
-        for (var i = 0; i < quizQuestions.length; i++) {
-            var j = Math.floor(Math.random() * (quizQuestions.length - i)) + i;
-            [quizQuestions[i], quizQuestions[j]] = [quizQuestions[j], quizQuestions[i]]; // swap
-        }
-        return shuffled;
-    }*/
 }
+
 
 /**
  * Handling Event listner on button click
@@ -183,5 +171,7 @@ function showResult() {
 
 
 }
+
+
 
     
