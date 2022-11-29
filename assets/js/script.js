@@ -5,15 +5,14 @@ let options2 = document.getElementById("options2");
 let options3 = document.getElementById("options3");
 let options4 = document.getElementById("options4");
 let time_element = document.getElementById("timer");
-let answeredQuestions =[]; // array of anwered question indexes
-let current_question = 0;
+let answeredQuestions = []; // array of anwered question indexes
+let current_question = -1;
 let time;
 const total_time = 30;
 let sec = total_time;
 let quizQuestions = [];
 let chosenOption = '';
 let currentQues = {};
-
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -24,22 +23,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     // load the main game
     loadGame();
     console.log("DomLoaded");
-    
-
 })
 
 function loadGame() {
-    
+
     handleOptionsClick();
     console.log("loadGame");
-
 
     if (current_question < quizQuestions.length) {
         current_question++;
         showQuestion(quizQuestions[current_question]);
     } else {
         showResult()
-
     }
 }
 
@@ -49,16 +44,15 @@ function handleOptionsClick() {
         button.addEventListener("click", function () {
             /*let optionWasClicked = this.getAttribute("data-type");*/
             checkIfScore(this.name);
+            
         });
-        
     }
+
     let reset = document.getElementById("reset");
-        reset.addEventListener("click", function () {
-            window.location.reload();
-           
-        });
-    
-        
+    reset.addEventListener("click", function () {
+        window.location.reload();
+
+    });
 }
 
 async function getData() {
@@ -67,7 +61,7 @@ async function getData() {
     const data = await response.json();
     quizQuestions = data;
     console.log(quizQuestions);
-        
+    
 }
 
 
@@ -79,12 +73,11 @@ function timer() {
         sec = total_time;
         clearInterval(time);
         showQuestion();
+        
     }
 }
 
 function checkIfScore(optionIdSelected) {
-    
-
     console.log(optionIdSelected);
     console.log("check if score");
 
@@ -98,80 +91,56 @@ function checkIfScore(optionIdSelected) {
         current_question++;
         showQuestion();
 
-        
-        
     } else {
         alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAnswers}!`);
         current_question++;
         showQuestion();
-
     }
 }
 
+function incrementScore() {
 
-
-
-    function incrementScore(){
-       
-        let oldScores = parseInt(document.getElementById("score").innerText);
-        document.getElementById("score").innerText = ++oldScores;
-    }
-
-
+    let oldScores = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScores;
+}
 
 /**
  * The function to show question and options on html page.
  */
 
 function showQuestion() {
-
     console.log("showQuestion");
- 
-    sec = total_time;
+
+  
     clearInterval(time);
     timer();
     time = setInterval(timer, 1000);
-    document.getElementById("question-number").innerText = current_question;
-
-    document.querySelectorAll('button[type="submit"], button:not([type])').forEach(option => option.checked = false)
     
 
+    document.querySelectorAll('button[type="submit"], button:not([type])').forEach(option => option.checked = false)
 
     //set questions and options from array
 
-    document.getElementById("question-number").innerText = current_question;
+    document.getElementById("question-number").innerText = current_question+1;
 
     question.innerHTML = quizQuestions[current_question].question;
 
     document.getElementById("options1").innerHTML = quizQuestions[current_question].correctAnswer;
     document.getElementById("options1").name = quizQuestions[current_question].correctAnswer;
 
-    document.getElementById("options2").innerHTML =quizQuestions[current_question].incorrectAnswers[0];
-    document.getElementById("options2").name =quizQuestions[current_question].incorrectAnswers[0];
+    document.getElementById("options2").innerHTML = quizQuestions[current_question].incorrectAnswers[0];
+    document.getElementById("options2").name = quizQuestions[current_question].incorrectAnswers[0];
 
     document.getElementById("options3").innerHTML = quizQuestions[current_question].incorrectAnswers[1];
     document.getElementById("options3").name = quizQuestions[current_question].incorrectAnswers[1];
-        
+
     document.getElementById("options4").innerHTML = quizQuestions[current_question].incorrectAnswers[2];
     document.getElementById("options4").name = quizQuestions[current_question].incorrectAnswers[2];
-
-    
 }
-
-
-/**
- * Handling Event listner on button click
- */
 
 function showResult() {
     console.log("showResults");
     clearInterval(time);
     checkIfScore();
     document.getElementById("score", score);
-
-
 }
-
-
-
-    
