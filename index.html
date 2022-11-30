@@ -1,20 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="General Knowledge Quiz Game with timer">
+    <meta name="keywords" content="quiz game, general knowledge, timer">
 
-    <!DOCTYPE html>
-    <html lang="en">
+    <!--font awesome script -->
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description"
-            content="General Knowledge Quiz Game with timer">
-        <meta name="keywords" content="quiz game, general knowledge, timer">
-
-         <!--font awesome script -->
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Quiz Game</title>
 </head>
@@ -27,7 +24,7 @@
     </div>
 
     <div class="question-area">
-        <div class="popup" onclick="myFunction()">Click 
+        <div class="popup" onclick="myFunction()">Click
             <span class="popuptext" id="myPopup">Popup!</span>
         </div>
         <span id="question"></span>
@@ -37,45 +34,50 @@
     <div id="answers-area">
         <div class="first-options">
             <div>
-                <button data-type="options1" class="options btn btn-block btn-outline-success text-left option" id="options1"></button>
+                <button data-type="options1" class="options btn btn-block btn-outline-success text-left option"
+                    id="options1"></button>
             </div>
             <div>
-                <button data-type="options2" class="options btn btn-block btn-outline-success text-left option" id="options2"></button>
+                <button data-type="options2" class="options btn btn-block btn-outline-success text-left option"
+                    id="options2"></button>
             </div>
         </div>
 
 
         <div class="second-options">
             <div>
-                <button data-type="options3" class="options btn btn-block btn-outline-success text-left option" id="options3"></button>
+                <button data-type="options3" class="options btn btn-block btn-outline-success text-left option"
+                    id="options3"></button>
             </div>
             <div>
-                <button data-type="options4" class="options btn btn-block btn-outline-success text-left option" id="options4"></button>
+                <button data-type="options4" class="options btn btn-block btn-outline-success text-left option"
+                    id="options4"></button>
             </div>
         </div>
 
-        <div id="timer">
-            <h4 class="timer">Total Time: <br> (00: <span id="time">00</span>)</h4>
-
+        <div>
+            <span class="count-digit">3</span>
+            <span class="count-digit">0</span>
+            <span class="separator">:</span>
+            <span class="count-digit">0</span>
+            <span class="count-digit">0</span>
         </div>
-
-    </div>
-
     </div>
     <div class="submit-area">
         <div id="question-header">
             Question <span id="question-number"></span> of 20
         </div>
         <img id="background" src="assets/images/background.png" alt="background">
-    
+    </div>
+
     <div class="results">
 
+
         <p class="total-score">Total Scores<span id="total-score">0</span></p>
-        
+
         <p class="scores">Score<span id="score">0</span></p>
 
     </div>
-</div>
 
     <script src="assets/js/script.js"></script>
 </body>
