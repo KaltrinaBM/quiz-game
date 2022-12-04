@@ -1,14 +1,15 @@
 let submit = document.getElementById('submit-button');
-let question = document.getElementById("question");
+let question1 = document.getElementById("question");
 let options1 = document.getElementById("options1");
 let options2 = document.getElementById("options2");
 let options3 = document.getElementById("options3");
 let options4 = document.getElementById("options4");
-let current_question = -1;
+let current_question_index = 0;
 let time;
 const total_time = 30;
 let quizQuestions = [];
 let shuffledQuestions;
+let total_question = 2;
 
 
 // Default inital value of timer
@@ -39,22 +40,19 @@ function loadGame() {
   startTimer();
   handleOptionsClick();
   console.log("loadGame");
- 
 
-  if (current_question < quizQuestions.length) {
-    current_question++;
-    showQuestion(quizQuestions[current_question]);
-  } else {
-    showResult();
-  }
+  if (current_question_index < total_question) {
+    showQuestion();
+  } 
 }
 
 function handleOptionsClick() {
   let buttons = document.getElementsByClassName("options");
   for (let button of buttons) {
     button.addEventListener("click", function () {
-      /*let optionWasClicked = this.getAttribute("data-type");*/
+
       checkIfScore(this.name);
+    
 
     });
   }
@@ -67,7 +65,7 @@ function handleOptionsClick() {
 }
 
 async function getData() {
-  const URL = 'https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=20';
+  const URL = `https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=${total_question}`;
   const response = await fetch(URL);
   const data = await response.json();
   quizQuestions = data;
@@ -122,12 +120,15 @@ const runCountDown = () => {
   if (countDownTime === 0) {
     stopTimer();
     countDownTime = defaultValue;
+    
   }
 }
 
 // Function to stop Countdown
 const stopTimer = () => {
   isStopped = true;
+  showResult.display;
+  resultPopup.display;
   if (timerID) {
     clearInterval(timerID);
   }
@@ -138,25 +139,53 @@ function checkIfScore(optionIdSelected) {
   console.log("check if score");
 
 
-  let correctAnswers = quizQuestions[current_question].correctAnswer;
-  let incorrectAnswers = [quizQuestions[current_question].incorrectAnswers[0], quizQuestions[current_question].incorrectAnswers[1], quizQuestions[current_question].incorrectAnswers[2]]
-  incorrectAnswers.push(correctAnswers);
-  shuffledQuestions = incorrectAnswers.sort(() => Math.random() - .5)
-  console.log(incorrectAnswers);
-  
+  let correctAns = question.correctAnswer;
 
-
-  if (correctAnswers === optionIdSelected) {
+  if (correctAns === optionIdSelected) {
     alert("Hey! You got it right! :D");
     incrementScore();
-    current_question++;
     showQuestion();
+    
 
   } else {
-    alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAnswers}!`);
-    current_question++;
+    alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAns}!`);
     showQuestion();
+
   }
+  
+
+}
+function getRandomIndex(curIndex) {
+  let randomIndex = Math.floor(Math.random() * curIndex);
+  if (randomIndex !== curIndex) {
+    return randomIndex;
+  }
+  return getRandomIndex(curIndex);
+}
+
+function swapElements(answerChoices, curIndex, randId) {
+  // Swap it with the current element.
+  let tmp = answerChoices[curIndex];
+  answerChoices[curIndex] = answerChoices[randId];
+  answerChoices[randId] = tmp;
+  return answerChoices;
+}
+
+function shuffleArray(answerChoices) {
+  let curIndex = answerChoices.length - 1;
+
+  // There remain elements to shuffle
+  while (curIndex) {
+    // Pick a random index
+    let randId = getRandomIndex(curIndex);
+
+    // Swap it with the current element.
+    answerChoices = swapElements(answerChoices, curIndex, randId)
+
+    // decrease curIndex
+    curIndex -= 1;
+  }
+  return answerChoices;
 }
 
 
@@ -172,34 +201,56 @@ function incrementScore() {
 
 function showQuestion() {
 
-  console.log("showQuestion");
+  question =  quizQuestions[current_question_index]
+
+  // Usage of shuffle
+  let answerChoices = [...question.incorrectAnswers, question.correctAnswer]
+  shuffledchoices = shuffleArray(answerChoices);
+  console.log(shuffledchoices);
 
   document.querySelectorAll('button[type="submit"], button:not([type])').forEach(option => option.checked = false)
 
-
-
   //set questions and options from array
 
-  document.getElementById("question-number").innerText = current_question + 1;
+  document.getElementById("question-number").innerText = current_question_index + 1;
 
-  question.innerHTML = quizQuestions[current_question].question;
+  question1.innerHTML = question.question;
 
-  document.getElementById("options1").innerHTML = quizQuestions[current_question].incorrectAnswers[0];
-  document.getElementById("options1").name = quizQuestions[current_question].incorrectAnswers[0];
+  document.getElementById("options1").innerHTML = shuffledchoices[0];
+  document.getElementById("options1").name = shuffledchoices[0];
 
-  document.getElementById("options2").innerHTML = quizQuestions[current_question].incorrectAnswers[1];
-  document.getElementById("options2").name = quizQuestions[current_question].incorrectAnswers[1];
+  document.getElementById("options2").innerHTML = shuffledchoices[1];
+  document.getElementById("options2").name = shuffledchoices[1];
 
-  document.getElementById("options3").innerHTML = quizQuestions[current_question].incorrectAnswers[2];
-  document.getElementById("options3").name = quizQuestions[current_question].incorrectAnswers[2];
+  document.getElementById("options3").innerHTML = shuffledchoices[2];
+  document.getElementById("options3").name = shuffledchoices[2];
 
-  document.getElementById("options4").innerHTML = quizQuestions[current_question].correctAnswer;
-  document.getElementById("options4").name = quizQuestions[current_question].correctAnswer;
+  document.getElementById("options4").innerHTML = shuffledchoices[3];
+  document.getElementById("options4").name = shuffledchoices[3];
+
+  console.log(`Correct Answer: ${quizQuestions[current_question_index].correctAnswer}`)
+
+  current_question_index++;
+
 }
 
 
 function showResult() {
+  resultPopup.display;
   console.log("showResults");
   clearInterval(time);
   checkIfScore();
+  current_question_index = 0;
+  buttons.hide;
+  
+}
+
+function openPopup() {
+  document.getElementById('test').style.display = 'block';
+ $('test').fadeIn(1000);
+}
+
+function closePopup() {
+  document.getElementById('test').style.display = 'none';
+  $('test').fadeOut(500);
 }

@@ -10,6 +10,8 @@
     <!--font awesome script -->
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -24,8 +26,10 @@
     </div>
 
     <div class="question-area">
-        <div class="popup" onclick="myFunction()">Click
-            <span class="popuptext" id="myPopup">Popup!</span>
+        <button onClick="openPopup();">click here</button>
+        <div id="test" class="popup" style="display:none;">
+            This is a test message
+            <div class="cancel" onclick="closePopup();">X</div>
         </div>
         <span id="question"></span>
         <button type="reset" class="reset" id="reset">Reset</button>
@@ -55,7 +59,7 @@
             </div>
         </div>
 
-        <div>
+        <div class = "timer">
             <span class="count-digit">3</span>
             <span class="count-digit">0</span>
             <span class="separator">:</span>
@@ -63,17 +67,15 @@
             <span class="count-digit">0</span>
         </div>
     </div>
-    <div class="submit-area">
+    <div>
         <div id="question-header">
-            Question <span id="question-number"></span> of 20
+            Question <span id="question-number"></span> of 2
         </div>
+
         <img id="background" src="assets/images/background.png" alt="background">
     </div>
 
     <div class="results">
-
-
-        <p class="total-score">Total Scores<span id="total-score">0</span></p>
 
         <p class="scores">Score<span id="score">0</span></p>
 
