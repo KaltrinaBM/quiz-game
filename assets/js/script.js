@@ -6,14 +6,14 @@ let options3 = document.getElementById("options3");
 let options4 = document.getElementById("options4");
 let current_question_index = 0;
 let time;
-const total_time = 30;
+const total_time = 20;
 let quizQuestions = [];
 let shuffledQuestions;
 let total_question = 2;
 
 
 // Default inital value of timer
-const defaultValue = 30 * 60;
+const defaultValue = 20 * 60;
 
 // variable to the time
 var countDownTime = defaultValue;
@@ -64,6 +64,16 @@ function handleOptionsClick() {
   });
 }
 
+//Function to disable click for the options
+function disableClick(){
+
+  
+  let buttons = document.getElementsByClassName("options");
+  for (let button of buttons) {
+    button.disabled = true;
+    $(this).removeClass('options_hover');
+  }
+}
 async function getData() {
   const URL = `https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=${total_question}`;
   const response = await fetch(URL);
@@ -119,6 +129,7 @@ const runCountDown = () => {
   // timeout on zero
   if (countDownTime === 0) {
     stopTimer();
+    disableClick();
     countDownTime = defaultValue;
     
   }
@@ -127,8 +138,6 @@ const runCountDown = () => {
 // Function to stop Countdown
 const stopTimer = () => {
   isStopped = true;
-  showResult.display;
-  resultPopup.display;
   if (timerID) {
     clearInterval(timerID);
   }
@@ -235,15 +244,7 @@ function showQuestion() {
 }
 
 
-function showResult() {
-  resultPopup.display;
-  console.log("showResults");
-  clearInterval(time);
-  checkIfScore();
-  current_question_index = 0;
-  buttons.hide;
-  
-}
+
 
 function openPopup() {
   document.getElementById('test').style.display = 'block';

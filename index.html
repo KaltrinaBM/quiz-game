@@ -24,15 +24,22 @@
             <img class="quiz" src="assets/images/quiz.png" alt="quiz">General Knowledge Quiz</h1>
 
     </div>
+    <div>
+        <div>
+            <p onClick="openPopup();"><i class="fas fa-info-circle"></i></p>
+            <div id="test" class="popup" style="display:none;">
+                This is a test message
+                <div class="cancel" onclick="closePopup();"><i class="far fa-window-close"></i></div>
+            </div>
+        </div>
+    
+            <button type="reset" class="reset" id="reset">Reset</button>
+
+    </div>
 
     <div class="question-area">
-        <button onClick="openPopup();">click here</button>
-        <div id="test" class="popup" style="display:none;">
-            This is a test message
-            <div class="cancel" onclick="closePopup();">X</div>
-        </div>
         <span id="question"></span>
-        <button type="reset" class="reset" id="reset">Reset</button>
+        
 
     </div>
     <div id="answers-area">
@@ -59,8 +66,8 @@
             </div>
         </div>
 
-        <div class = "timer">
-            <span class="count-digit">3</span>
+        <div class="timer">
+            <span class="count-digit">2</span>
             <span class="count-digit">0</span>
             <span class="separator">:</span>
             <span class="count-digit">0</span>
@@ -68,17 +75,16 @@
         </div>
     </div>
     <div>
-        <div id="question-header">
-            Question <span id="question-number"></span> of 2
-        </div>
-
         <img id="background" src="assets/images/background.png" alt="background">
     </div>
 
     <div class="results">
 
-        <p class="scores">Score<span id="score">0</span></p>
+        <p class="scores">Score:&nbsp;<span id="score">0</span></p>
 
+    </div>
+    <div id="question-header">
+        Question <span id="question-number"></span> of 2
     </div>
 
     <script src="assets/js/script.js"></script>
