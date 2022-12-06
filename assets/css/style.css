@@ -2,7 +2,7 @@
 
 body {
     background-color: #98D7C2;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Lato", sans-serif;
     color: #3f3f5b;
     text-align: center;
 }
@@ -10,13 +10,15 @@ body {
 /* --------- Heading */
 
 .heading {
+    font-family: 'Montserrat Alternates', sans-serif;
     text-align: center;
     font-size: 2.5rem;
     display: inline-block;
     margin: auto;
-    padding: 30px;
+    padding: 20px;
 }
 
+/*styling pupop*/
 .popup {
     display: inline-block;
     float: left;
@@ -26,27 +28,56 @@ body {
 .fas {
     display: inline-block;
     float: left;
-    margin: 50px;
+    margin: 0 50px 0 50px;
     font-size: 30px;
 
 }
+
 .fas:hover {
     color: #91161A;
 }
-
-.quiz {
-    height: 60px;
-    padding-right: 5px;
-    display: inline-block;
+.popup {
+    position: fixed;
+    width: 200px;
+    height: 250px;
+    font-family: verdana;
+    font-size: 13px;
+    padding: 10px;
+    background-color: #eae683;
+    border: 2px solid grey;
+    border-radius: 15px;
+    z-index: 100000000000000000;
 }
 
+.cancel {
+    display: relative;
+    cursor: pointer;
+    margin: 0;
+    float: right;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    text-align: center;
+    background-color: #3f3f5b;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #eae510;
+    border-radius: 3px;
+    z-index: 100000000000000000;
+}
+
+.cancel:hover {
+    background: #91161A;
+}
+/* reset button*/
 .reset {
     display: inline-block;
     float: right;
-    margin: 30px;
+    margin: 0 60px 0 30px;
     background-color: #eae510;
-    color:#91161A;
-    border-color:#91161A;
+    color: #91161A;
+    border-color: #91161A;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -57,28 +88,33 @@ body {
     color: #eae510;
     transition: 0.7s;
 }
-
+/* quiz styling*/
+.quiz {
+    height: 60px;
+    display: inline-block;
+}
 #question {
     display: inline-block;
-    height: 60px;
+    height: 50px;
     font-size: 1.1rem;
     font-weight: bold;
     background-color: #98D7C2;
-    width: 800px;
-    border: 3px solid rgb(37, 130, 129);
+    width: 900px;
+    border: 3px solid #3f3f5b;
     padding: 20px;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 15px;
 }
 
-#question-header{
+#question-header {
     font-weight: bolder;
     font-size: 16px;
-margin: auto;
-padding: 30px;
-
+    margin: auto;
+    padding: 30px;
+    display: inline-block;
 }
 
+/*options*/
 #answers-area {
     height: 200px;
     width: 800px;
@@ -108,28 +144,11 @@ padding: 30px;
     margin-top: 10px;
 }
 
-.timer {
-    width: 90px;
-    height: 60px;
-    border-radius: 50%;
-    margin: auto;
-    top: 50%;
-    transform: translateY(50%);
-    padding-top: 30px;
-    background: #c99193;
-    border: 2px solid #3f3f5b;
-    color: #3f3f5b;
-    text-align: center;
-    font: 18px 'Montserrat Alternates', sans-serif;
-    font-weight: bolder;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
 
 
 .options {
-
     text-align: left;
-    font-size: 1.0rem;
+    font-size: 16px;
     margin: 10px;
     width: 95%;
     padding: 10px;
@@ -152,23 +171,35 @@ padding: 30px;
     transition: 0.7s;
 }
 
+/*timer*/
+.timer {
+    width: 90px;
+    height: 60px;
+    border-radius: 50%;
+    margin: auto;
+    top: 50%;
+    transform: translateY(50%);
+    padding-top: 30px;
+    background: #c99193;
+    border: 2px solid #3f3f5b;
+    color: #3f3f5b;
+    text-align: center;
+    font: 18px 'Montserrat Alternates', sans-serif;
+    font-weight: bolder;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
-
-#correct {
+.time-out {
+    font-size: 16px;
+    font-family: 'Lato', sans-serifs;
     color: #116530;
-    font-weight: bold;
-    font-size: 1.8rem;
-}
+    font-weight: bolder;
 
-#incorrect {
-    color: #91161A;
-    font-weight: bold;
-    font-size: 1.8rem;
 }
-
+/*score*/
 .scores {
     display: inline-block;
-    padding: 25px;
+    padding: 10px;
     margin: 0;
     font-size: 1.4rem;
     font-weight: bolder;
@@ -177,45 +208,21 @@ padding: 30px;
     letter-spacing: 2px;
 }
 
+#total-score {
+    font-size: 16px;
+    font-family: 'Lato', sans-serifs;
+    color: #116530;
+    font-weight: bolder;
+
+}
+/*background image*/
 #background {
     float: right;
     height: auto;
-    width: 280px;
+    width: 220px;
     display: inline-block;
+    margin-right: 30px;
+ }
 
 
-}
 
-.popup {
-    position: fixed;
-    width: 200px;
-    height: 150px;
-    font-family: verdana;
-    font-size: 13px;
-    padding: 10px;
-    background-color: #eae683;
-    border: 2px solid grey;
-    z-index: 100000000000000000;
-}
-
-.cancel {
-    display: relative;
-    cursor: pointer;
-    margin: 0;
-    float: right;
-    height: 25px;
-    width: 25px;
-    padding: 0;
-    text-align: center;
-    background-color: #3f3f5b;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: #eae510;
-    border-radius: 3px;
-    z-index: 100000000000000000;
-}
-
-.cancel:hover {
-    background: #91161A;
-}

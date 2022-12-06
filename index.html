@@ -9,7 +9,9 @@
 
     <!--font awesome script -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat+Alternates:wght@300&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
@@ -31,19 +33,20 @@
                 This is a test message
                 <div class="cancel" onclick="closePopup();"><i class="far fa-window-close"></i></div>
             </div>
-        </div>
-    
-            <button type="reset" class="reset" id="reset">Reset</button>
 
+        </div>
+        <button type="reset" class="reset" id="reset">Reset</button>
+    </div>
+    <div>
+        <h2 id="total-score">Game Over! You scored: <span class="scores"></span> / 10</h2>
+        <h3 id="time-out">Time out! Please reset the Quiz to play again!</h3>
     </div>
 
     <div class="question-area">
         <span id="question"></span>
-        
-
     </div>
     <div id="answers-area">
-        <div class="first-options">
+        <div class="first-options" id="first-options">
             <div>
                 <button data-type="options1" class="options btn btn-block btn-outline-success text-left option"
                     id="options1"></button>
@@ -55,7 +58,7 @@
         </div>
 
 
-        <div class="second-options">
+        <div class="second-options" id="second-options">
             <div>
                 <button data-type="options3" class="options btn btn-block btn-outline-success text-left option"
                     id="options3"></button>
@@ -78,14 +81,13 @@
         <img id="background" src="assets/images/background.png" alt="background">
     </div>
 
-    <div class="results">
-
+    <div>
         <p class="scores">Score:&nbsp;<span id="score">0</span></p>
-
     </div>
     <div id="question-header">
         Question <span id="question-number"></span> of 2
     </div>
+
 
     <script src="assets/js/script.js"></script>
 </body>

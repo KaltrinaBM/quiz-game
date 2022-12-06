@@ -12,19 +12,16 @@ let shuffledQuestions;
 let total_question = 2;
 
 
-// Default inital value of timer
-const defaultValue = 20 * 60;
-
-// variable to the time
+//Default inital for timer
+const defaultValue = 1 * 60;
 var countDownTime = defaultValue;
 
-// variable to store time interval
+//variable to store time interval
 var timerID;
-
-// Variable to track whether timer is running or not
 var isStopped = true;
 
 
+// Wait for the DOM to finish loading before running the game
 document.addEventListener("DOMContentLoaded", async function () {
 
   // First load question from remote API
@@ -41,39 +38,45 @@ function loadGame() {
   handleOptionsClick();
   console.log("loadGame");
 
-  if (current_question_index < total_question) {
-    showQuestion();
-  } 
 }
 
+// Get the button elements and add event listeners to them
 function handleOptionsClick() {
   let buttons = document.getElementsByClassName("options");
   for (let button of buttons) {
     button.addEventListener("click", function () {
 
       checkIfScore(this.name);
-    
+
 
     });
   }
-
+  // Add the reset option to reset the game to default
   let reset = document.getElementById("reset");
   reset.addEventListener("click", function () {
     window.location.reload();
 
   });
+
+  if (current_question_index ===2) {
+    showQuestion();
+  } else {
+    disableClick();
+  }
 }
 
 //Function to disable click for the options
-function disableClick(){
+function disableClick() {
+  document.getElementById('first-options').style.visibility = 'hidden';
+  document.getElementById('second-options').style.visibility = 'hidden';
+  document.getElementById('question').style.visibility = 'hidden';
+  document.getElementById('question-header').style.visibility = 'hidden';
+  document.getElementById('total-score').style.visibility = 'visible';
+  document.getElementById('time-out').style.visibility = 'visible';
 
-  
-  let buttons = document.getElementsByClassName("options");
-  for (let button of buttons) {
-    button.disabled = true;
-    $(this).removeClass('options_hover');
-  }
+
 }
+//Function to get data from Trivia Api
 async function getData() {
   const URL = `https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=${total_question}`;
   const response = await fetch(URL);
@@ -119,20 +122,29 @@ const startTimer = () => {
 };
 
 
-// function to execute timer
+// Function to execute timer
 const runCountDown = () => {
-  // decrement time
+  // Decrement time
   countDownTime -= 1;
   //Display updated time
   renderTime();
 
+  if (current_question_index <= total_question) {
+    showQuestion();
+
+  }
   // timeout on zero
   if (countDownTime === 0) {
     stopTimer();
     disableClick();
     countDownTime = defaultValue;
-    
+
+  } else {
+    disableClick();
   }
+
+
+
 }
 
 // Function to stop Countdown
@@ -142,7 +154,7 @@ const stopTimer = () => {
     clearInterval(timerID);
   }
 };
-
+//Function to check if the answer clicked was correct or not
 function checkIfScore(optionIdSelected) {
   console.log(optionIdSelected);
   console.log("check if score");
@@ -151,19 +163,18 @@ function checkIfScore(optionIdSelected) {
   let correctAns = question.correctAnswer;
 
   if (correctAns === optionIdSelected) {
-    alert("Hey! You got it right! :D");
+    alert("Well done!");
     incrementScore();
-    showQuestion();
-    
+
 
   } else {
-    alert(`Awwww.... you answered incorrect answer. The correct answer was ${correctAns}!`);
-    showQuestion();
+    alert(`Incorrect. The correct answer was ${correctAns}!`);
 
   }
-  
+
 
 }
+//Function to randomize options
 function getRandomIndex(curIndex) {
   let randomIndex = Math.floor(Math.random() * curIndex);
   if (randomIndex !== curIndex) {
@@ -191,13 +202,13 @@ function shuffleArray(answerChoices) {
     // Swap it with the current element.
     answerChoices = swapElements(answerChoices, curIndex, randId)
 
-    // decrease curIndex
+    // Decrease curIndex
     curIndex -= 1;
   }
   return answerChoices;
 }
 
-
+//Increase score for correct answer
 function incrementScore() {
 
   let oldScores = parseInt(document.getElementById("score").innerText);
@@ -209,8 +220,16 @@ function incrementScore() {
  */
 
 function showQuestion() {
+  if (current_question_index < total_question) {
+    showQuestion();
+  } else {
+    disableClick();
+  }
 
-  question =  quizQuestions[current_question_index]
+  document.getElementById('total-score').style.visibility = 'hidden';
+  document.getElementById('time-out').style.visibility = 'hidden';
+
+  question = quizQuestions[current_question_index]
 
   // Usage of shuffle
   let answerChoices = [...question.incorrectAnswers, question.correctAnswer]
@@ -240,17 +259,12 @@ function showQuestion() {
   console.log(`Correct Answer: ${quizQuestions[current_question_index].correctAnswer}`)
 
   current_question_index++;
-
 }
-
-
-
-
+//open and close popup for the information
 function openPopup() {
   document.getElementById('test').style.display = 'block';
- $('test').fadeIn(1000);
+  $('test').fadeIn(1000);
 }
-
 function closePopup() {
   document.getElementById('test').style.display = 'none';
   $('test').fadeOut(500);
