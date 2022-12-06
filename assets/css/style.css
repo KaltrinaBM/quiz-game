@@ -19,6 +19,7 @@ body {
 }
 
 /*styling pupop*/
+
 .popup {
     display: inline-block;
     float: left;
@@ -30,14 +31,15 @@ body {
     float: left;
     margin: 0 50px 0 50px;
     font-size: 30px;
-
 }
 
 .fas:hover {
     color: #91161A;
 }
+
 .popup {
     position: fixed;
+    text-align: left;
     width: 200px;
     height: 250px;
     font-family: verdana;
@@ -52,7 +54,7 @@ body {
 .cancel {
     display: relative;
     cursor: pointer;
-    margin: 0;
+    margin: 10px;
     float: right;
     height: 25px;
     width: 25px;
@@ -70,11 +72,13 @@ body {
 .cancel:hover {
     background: #91161A;
 }
+
 /* reset button*/
+
 .reset {
     display: inline-block;
     float: right;
-    margin: 0 60px 0 30px;
+    margin-right: 60px;
     background-color: #eae510;
     color: #91161A;
     border-color: #91161A;
@@ -88,18 +92,21 @@ body {
     color: #eae510;
     transition: 0.7s;
 }
+
 /* quiz styling*/
 .quiz {
     height: 60px;
     display: inline-block;
 }
+
 #question {
     display: inline-block;
+    clear: both;
     height: 50px;
     font-size: 1.1rem;
     font-weight: bold;
     background-color: #98D7C2;
-    width: 900px;
+    width: 800px;
     border: 3px solid #3f3f5b;
     padding: 20px;
     margin: 0 auto;
@@ -114,7 +121,14 @@ body {
     display: inline-block;
 }
 
+#circles {
+    width: auto;
+    height: 30px;
+    clear: both;
+}
+
 /*options*/
+
 #answers-area {
     height: 200px;
     width: 800px;
@@ -144,8 +158,6 @@ body {
     margin-top: 10px;
 }
 
-
-
 .options {
     text-align: left;
     font-size: 16px;
@@ -171,7 +183,8 @@ body {
     transition: 0.7s;
 }
 
-/*timer*/
+/*countdown timer*/
+
 .timer {
     width: 90px;
     height: 60px;
@@ -189,14 +202,16 @@ body {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.time-out {
+#time-out {
     font-size: 16px;
     font-family: 'Lato', sans-serifs;
     color: #116530;
     font-weight: bolder;
-
+    margin: auto;
+    clear: both;
 }
-/*score*/
+
+/*correct scores*/
 .scores {
     display: inline-block;
     padding: 10px;
@@ -208,13 +223,6 @@ body {
     letter-spacing: 2px;
 }
 
-#total-score {
-    font-size: 16px;
-    font-family: 'Lato', sans-serifs;
-    color: #116530;
-    font-weight: bolder;
-
-}
 /*background image*/
 #background {
     float: right;
@@ -222,7 +230,85 @@ body {
     width: 220px;
     display: inline-block;
     margin-right: 30px;
- }
+}
 
+/* --------- Media queries */
 
+@media (max-width: 800px) {
 
+    #answers-area {
+        width: 100%;
+        margin: auto;
+        clear: both;
+    }
+
+    .first-options {
+        height: auto;
+    }
+
+    .second-options {
+        height: auto;
+    }
+
+    #question {
+        clear: both;
+        height: auto;
+        width: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .timer {
+        clear: both;
+        width: 40px;
+        height: 30px;
+        font-size: 10px;
+        padding: 15px 5px 5px 5px;
+        transform: none;
+        display: block;
+    }
+
+    #background {
+        clear: both;
+    }
+
+    .scores {
+        clear: both;
+    }
+
+    #time-out {
+        margin: 20px;
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .first-options {
+        width: auto;
+        float: none;
+    }
+
+    .second-options {
+        width: auto;
+        float: none;
+    }
+
+    #background {
+        display: none;
+    }
+
+    .scores {
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+
+    #answers-area {
+        width: 100%;
+        margin: auto;
+        clear: both;
+        display: table;
+    }
+}
