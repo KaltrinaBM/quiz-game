@@ -1,12 +1,5 @@
-let submit = document.getElementById('submit-button');
 let question1 = document.getElementById("question");
-let options1 = document.getElementById("options1");
-let options2 = document.getElementById("options2");
-let options3 = document.getElementById("options3");
-let options4 = document.getElementById("options4");
 let current_question_index = 0;
-let time;
-const total_time = 20;
 let quizQuestions = [];
 let shuffledQuestions;
 let total_question = 20;

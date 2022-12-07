@@ -52,7 +52,6 @@ body {
 }
 
 .cancel {
-    display: relative;
     cursor: pointer;
     margin: 10px;
     float: right;
