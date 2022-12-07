@@ -27,9 +27,11 @@ This is a General Knowledge Quiz game website which has questions with single co
 *   ### Wireframes
 
     -   Home Page Wireframe
+
     ![wireframe](/assets/images/wireframe.png)
 
     -   Mobile Wireframe 
+
     ![phone](/assets/images/phone.png)
 
 ## Technologies Used
@@ -43,9 +45,9 @@ HTML, CSS, JavaScript.
 1. [Hover.css:](https://ianlunn.github.io/Hover/)
     - Hover.css was used on the buttons.
 1. [Google Fonts:](https://fonts.google.com/)
-    - Google fonts were used to import the 'Titillium Web' font into the style.css file which is used on all pages throughout the project.
+    - Google fonts were used to import fonts used on this website.
 1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
+    - Font Awesome was used for the icons.
 1. [Git](https://git-scm.com/)
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 1. [GitHub:](https://github.com/)
@@ -56,6 +58,8 @@ HTML, CSS, JavaScript.
 ## Features
 
 -   Responsive on all device sizes
+
+![responsive](/assets/images/responsive.PNG)
 
 -   Interactive elements
 
@@ -69,7 +73,7 @@ HTML, CSS, JavaScript.
 
 - __The Game Area__
 
-  - This section has the question and 4 clickable buttons under the question, so the user can select one which will be checked if the answer was correct or not. If the answer is correct, the score will be increased by 1, if the answer is incorrect the score will be the same and the correct answer will be provided for the user.
+  - This section has the question and 4 clickable buttons under the question, so the user can select one which will be checked if the answer was correct or not. If the answer is correct, the score will be increased by 1, if the answer is incorrect the score will be the same and the correct answer will be provided for the user. Also, there is 20 minutes countdown time for 20 questions to be completed.
 
 ![game](/assets/images/game.PNG)
 
@@ -89,7 +93,6 @@ HTML, CSS, JavaScript.
 
 ## Testing
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 - HTML
     - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fkaltrinabm-quizgame-fppqhtd3fg4.ws-eu77.gitpod.io%2F#textarea)
 - CSS
@@ -101,6 +104,10 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
       - Function with the largest signature take 3 arguments, while the median is 0.
       - Largest function has 18 statements in it, while the median is 3.5.
       - The most complex function has a cyclomatic complexity value of 3 while the median is 1.
+
+- Lighthouse results
+
+![lighthousePP2](/assets/images/lighthousePP2.PNG)
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -140,22 +147,11 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ### Unfixed Bugs
 
-There are features that could not be implemented due to the deadline, and some bugs with the CSS file that should be fixed. Also the responsive design for different devices should be improved.
+-   There are features that could not be implemented due to the deadline, and some bugs with the CSS file that should be fixed. Also the responsive design for different devices should be improved.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub) 
-
-- The site was deployed to GitHub pages. The steps to deploy are as follows: 
-  - In the GitHub repository, navigate to the Settings tab 
-  - From the source section drop-down menu, select the Master Branch
-  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
-
-The live link can be found here - https://code-institute-org.github.io/love-maths/
-
-### GitHub Pages
-
-The project was deployed to GitHub Pages:
+The live link can be found here - https://kaltrinabm.github.io/quiz-game/
 
 ## Credits
 
